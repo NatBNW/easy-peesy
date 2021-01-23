@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { Button, View, Text } from 'react-native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
+import { Button, View, Text, Dimensions } from 'react-native';
+import { createDrawerNavigator, DrawerContent, DrawerContentScrollView, DrawerItem, DrawerItemList } from '@react-navigation/drawer';
 import MapScreen from '../screens/MapScreen';
 import AddBathroomScreen from '../screens/AddBathroomScreen';
 import AboutScreen from '../screens/AboutScreen';
@@ -14,7 +14,7 @@ import SettingsScreen from '../screens/SettingsScreen';
 function HomeScreen({ navigation }) {
     return (
         <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-            <Text style={{fontSize: 20, fontWeight: 'bold'}}>HOME</Text>
+            <Text style={{ fontSize: 20, fontWeight: 'bold' }}>HOME</Text>
             <Button
                 onPress={() => navigation.navigate('Map')}
                 title="Go to maps"
@@ -59,7 +59,7 @@ const Drawer = createDrawerNavigator();
 
 export default function Menu() {
     return (
-        <Drawer.Navigator initialRouteName="Home">
+        <Drawer.Navigator initialRouteName="Home" drawerContent={props => <MenuContent {...props}/>}>
             <Drawer.Screen name="Home" component={HomeScreen} />
             <Drawer.Screen name="Map" component={MapScreen} />
             <Drawer.Screen name="Add A Bathroom" component={AddBathroomScreen} />
@@ -71,5 +71,14 @@ export default function Menu() {
             <Drawer.Screen name="Reviews" component={ReviewsScreen} />
             <Drawer.Screen name="Settings" component={SettingsScreen} />
         </Drawer.Navigator>
+    );
+}
+
+function MenuContent({...props}) {
+    return (
+        <DrawerContentScrollView {...props}>
+            <DrawerItemList {...props} />
+            <DrawerItem label="TEST"></DrawerItem>
+        </DrawerContentScrollView>
     );
 }
