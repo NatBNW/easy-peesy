@@ -20,6 +20,9 @@ export default function DetailsScreen({navigation}) {
         <Text style={styles.base}>Description of this restroom</Text>
         <View style={styles.separator} />
         <Button onPress={() => navigation.goBack()} title="Go back home" />
+        <View style={styles.separator} />
+        <Button onPress={() => navigation.navigate('Reviews')} title="Review This Restroom" />
+        
         </View>
     );
 }
